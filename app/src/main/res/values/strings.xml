@@ -1,0 +1,15 @@
+<resources>
+    <string name="action_close">Tutup</string>
+    <string name="action_retry">Coba Lagi</string>
+    <string name="action_yes">Ya</string>
+    <string name="action_no">Tidak</string>
+    <string name="msg_error_invalid_data">Kolom %s tidak valid.</string>
+    <string name="msg_error_general_network">Tidak ada koneksi internet, mohon coba kembali.</string>
+    <string name="msg_error_general_not_found">Maaf, data yang anda cari tidak ditemukan.</string>
+    <string name="msg_error_general_auth">Mohon login terlebih dahulu untuk mengakses halaman ini.</string>
+    <string name="msg_error_general_unknown">Terjadi error yang tidak diketahui.</string>
+    <string name="msg_under_development">Maaf, fitur ini masih dalam tahap pengembangan.</string>
+    <string name="text_version">Versi %s</string>
+    <string name="action_skip">Lewati</string>
+    <string name="action_choose_date">Pilih Tanggal</string>
+</resources>

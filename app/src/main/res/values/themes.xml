@@ -1,0 +1,126 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.TheMovieDB" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/dark_blue</item>
+        <item name="colorPrimaryVariant">@color/dark_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/light_blue</item>
+        <item name="colorSecondaryVariant">@color/blue</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+
+        <item name="materialButtonStyle">@style/Widget.TheMovieDB.Button</item>
+        <item name="snackbarStyle">@style/Widget.TheMovieDB.Snackbar</item>
+        <item name="snackbarButtonStyle">@style/Widget.TheMovieDB.Snackbar.Button</item>
+        <item name="snackbarTextViewStyle">@style/Widget.TheMovieDB.Snackbar.Text</item>
+        <item name="textInputOutlinedStyle">@style/Widget.TheMovieDB.TextInputLayout.OutlinedBox</item>
+        <item name="textInputStyle">@style/Widget.TheMovieDB.TextInputLayout</item>
+        <item name="editTextStyle">@style/Widget.TheMovieDB.TextInputEditText</item>
+        <item name="autoCompleteTextViewStyle">@style/Widget.TheMovieDB.AutoCompleteTextView</item>
+        <item name="android:editTextStyle">@style/Widget.TheMovieDB.TextInputEditText</item>
+        <item name="android:autoCompleteTextViewStyle">@style/Widget.TheMovieDB.AutoCompleteTextView</item>
+
+        <item name="colorTextPrimary">@color/gray_1</item>
+        <item name="colorTextSecondary">@color/gray_3</item>
+        <item name="colorHint">@color/gray_5</item>
+        <item name="colorDividerSmall">@color/gray_5</item>
+        <item name="colorIndicator">@color/red</item>
+        <item name="colorFormBackground">@color/white</item>
+
+        <item name="textAppearanceHeadline1">@style/TextAppearance.TMDB.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.TMDB.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.TMDB.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.TMDB.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.TMDB.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.TMDB.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.TMDB.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.TMDB.Subtitle2</item>
+        <item name="textAppearanceSubtitle3">@style/TextAppearance.TMDB.Subtitle3</item>
+        <item name="textAppearanceSubtitle4">@style/TextAppearance.TMDB.Subtitle3</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.TMDB.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.TMDB.Body2</item>
+        <item name="textAppearanceBody3">@style/TextAppearance.TMDB.Body3</item>
+        <item name="textAppearanceBody4">@style/TextAppearance.TMDB.Body4</item>
+        <item name="textAppearanceBody5">@style/TextAppearance.TMDB.Body5</item>
+        <item name="textAppearanceBody6">@style/TextAppearance.TMDB.Body6</item>
+        <item name="textAppearanceCaption1">@style/TextAppearance.TMDB.Caption1</item>
+        <item name="textAppearanceCaption2">@style/TextAppearance.TMDB.Caption2</item>
+        <item name="textAppearanceCaption3">@style/TextAppearance.TMDB.Caption3</item>
+        <item name="textAppearanceCaption4">@style/TextAppearance.TMDB.Caption4</item>
+        <item name="textAppearanceButton">@style/TextAppearance.TMDB.Button</item>
+        <item name="textAppearanceOverline1">@style/TextAppearance.TMDB.Overline1</item>
+        <item name="textAppearanceOverline2">@style/TextAppearance.TMDB.Overline2</item>
+        <item name="textAppearanceOverline3">@style/TextAppearance.TMDB.Overline3</item>
+    </style>
+
+    <style name="Theme.LandingTheme" parent="Theme.TheMovieDB">
+        <item name="android:windowBackground">@drawable/img_background_landing</item>
+    </style>
+
+    <style name="Theme.SplashTheme" parent="Theme.TheMovieDB">
+        <item name="android:windowBackground">@drawable/bg_splash_screen_test</item>
+    </style>
+
+    <style name="Theme.TheMovieDB.BottomSheet" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/dark_blue</item>
+        <item name="colorPrimaryVariant">@color/dark_blue</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/light_blue</item>
+        <item name="colorSecondaryVariant">@color/blue</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+
+        <item name="materialButtonStyle">@style/Widget.TheMovieDB.Button</item>
+        <item name="snackbarStyle">@style/Widget.TheMovieDB.Snackbar</item>
+        <item name="snackbarButtonStyle">@style/Widget.TheMovieDB.Snackbar.Button</item>
+        <item name="snackbarTextViewStyle">@style/Widget.TheMovieDB.Snackbar.Text</item>
+        <item name="textInputOutlinedStyle">@style/Widget.TheMovieDB.TextInputLayout.OutlinedBox</item>
+        <item name="textInputStyle">@style/Widget.TheMovieDB.TextInputLayout</item>
+        <item name="editTextStyle">@style/Widget.TheMovieDB.TextInputEditText</item>
+        <item name="autoCompleteTextViewStyle">@style/Widget.TheMovieDB.AutoCompleteTextView</item>
+        <item name="android:editTextStyle">@style/Widget.TheMovieDB.TextInputEditText</item>
+        <item name="android:autoCompleteTextViewStyle">@style/Widget.TheMovieDB.AutoCompleteTextView</item>
+
+        <item name="colorTextPrimary">@color/gray_1</item>
+        <item name="colorTextSecondary">@color/gray_3</item>
+        <item name="colorHint">@color/gray_5</item>
+        <item name="colorDividerSmall">@color/gray_5</item>
+        <item name="colorIndicator">@color/red</item>
+        <item name="colorFormBackground">@color/white</item>
+
+        <item name="textAppearanceHeadline1">@style/TextAppearance.TMDB.Headline1</item>
+        <item name="textAppearanceHeadline2">@style/TextAppearance.TMDB.Headline2</item>
+        <item name="textAppearanceHeadline3">@style/TextAppearance.TMDB.Headline3</item>
+        <item name="textAppearanceHeadline4">@style/TextAppearance.TMDB.Headline4</item>
+        <item name="textAppearanceHeadline5">@style/TextAppearance.TMDB.Headline5</item>
+        <item name="textAppearanceHeadline6">@style/TextAppearance.TMDB.Headline6</item>
+        <item name="textAppearanceSubtitle1">@style/TextAppearance.TMDB.Subtitle1</item>
+        <item name="textAppearanceSubtitle2">@style/TextAppearance.TMDB.Subtitle2</item>
+        <item name="textAppearanceSubtitle3">@style/TextAppearance.TMDB.Subtitle3</item>
+        <item name="textAppearanceSubtitle4">@style/TextAppearance.TMDB.Subtitle3</item>
+        <item name="textAppearanceBody1">@style/TextAppearance.TMDB.Body1</item>
+        <item name="textAppearanceBody2">@style/TextAppearance.TMDB.Body2</item>
+        <item name="textAppearanceBody3">@style/TextAppearance.TMDB.Body3</item>
+        <item name="textAppearanceBody4">@style/TextAppearance.TMDB.Body4</item>
+        <item name="textAppearanceBody5">@style/TextAppearance.TMDB.Body5</item>
+        <item name="textAppearanceBody6">@style/TextAppearance.TMDB.Body6</item>
+        <item name="textAppearanceCaption1">@style/TextAppearance.TMDB.Caption1</item>
+        <item name="textAppearanceCaption2">@style/TextAppearance.TMDB.Caption2</item>
+        <item name="textAppearanceCaption3">@style/TextAppearance.TMDB.Caption3</item>
+        <item name="textAppearanceCaption4">@style/TextAppearance.TMDB.Caption4</item>
+        <item name="textAppearanceButton">@style/TextAppearance.TMDB.Button</item>
+        <item name="textAppearanceOverline1">@style/TextAppearance.TMDB.Overline1</item>
+        <item name="textAppearanceOverline2">@style/TextAppearance.TMDB.Overline2</item>
+        <item name="textAppearanceOverline3">@style/TextAppearance.TMDB.Overline3</item>
+
+        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.TheMovieDB.BottomSheet</item>
+    </style>
+</resources>
