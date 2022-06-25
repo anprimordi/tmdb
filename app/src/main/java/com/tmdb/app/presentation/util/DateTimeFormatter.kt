@@ -63,7 +63,7 @@ object DateTimeFormatter {
 
     @JvmStatic
     fun formatDate(millis: Long?): String {
-        return if (millis != null) SimpleDateFormat(DATE_PATTERN, Locale("ID")).format(
+        return if (millis != null) SimpleDateFormat(DATE_PATTERN, Locale.getDefault()).format(
             Date(
                 millis
             )

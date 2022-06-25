@@ -52,7 +52,7 @@ class AppRemoteClient @Inject constructor(
             getHttpErrorResult(ex)
         } catch (ex: Exception) {
             Timber.e(ex)
-            com.tmdb.app.domain.model.common.Error.construct(ex)
+            Error.construct(ex)
         }
     }
 
@@ -69,6 +69,7 @@ class AppRemoteClient @Inject constructor(
         if (userJson != null) {
             try {
                 val user = gson.fromJson(userJson, User::class.java) ?: throw NullPointerException()
+
                 builder.addInterceptor(Authorization(user.token))
             } catch (ex: Exception) {
                 ex.printStackTrace()
@@ -78,7 +79,7 @@ class AppRemoteClient @Inject constructor(
         return builder.build()
     }
 
-    private fun <T> getHttpErrorResult(ex: HttpException): com.tmdb.app.domain.model.common.Error<T> {
+    private fun <T> getHttpErrorResult(ex: HttpException): Error<T> {
         val errorBody = ex.response()?.errorBody()
         val response = if (errorBody != null) {
             val gson = Gson()

@@ -10,11 +10,11 @@ import com.tmdb.app.domain.model.common.Result
 import javax.inject.Inject
 
 class MovieRepository @Inject constructor(
-    @LocalDataSource localDataSource: MovieDataSource,
-    @RemoteDataSource remoteMovieDataSource: MovieDataSource
+    @LocalDataSource private val localDataSource: MovieDataSource,
+    @RemoteDataSource private val remoteMovieDataSource: MovieDataSource
 ) : MovieDataSource {
-    override suspend fun getMovieListByGenre(genreName: String): Result<List<Movie>> {
-        TODO("Not yet implemented")
+    override suspend fun getMovieListByGenre(genreId: Int): Result<List<Movie>> {
+        return remoteMovieDataSource.getMovieListByGenre(genreId)
     }
 
     override suspend fun getMovieDetail(movieId: Int): Result<Movie> {

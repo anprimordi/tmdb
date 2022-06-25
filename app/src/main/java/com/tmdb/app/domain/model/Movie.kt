@@ -5,6 +5,7 @@ import com.tmdb.app.domain.model.common.Model
 data class Movie(
     val id: Int,
     val title: String,
+    val posterUrl: String,
     val genres: List<Genre>,
     val overview: String,
     val popularity: Double,
@@ -16,6 +17,7 @@ data class Movie(
         val DEFAULT = Movie(
             id = 0,
             title = "",
+            posterUrl = "",
             genres = listOf(),
             overview = "",
             popularity = 0.0,

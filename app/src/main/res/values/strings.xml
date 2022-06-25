@@ -12,4 +12,5 @@
     <string name="text_version">Versi %s</string>
     <string name="action_skip">Lewati</string>
     <string name="action_choose_date">Pilih Tanggal</string>
+    <string name="plain_genre_greet">What do you want to watch today?</string>
 </resources>

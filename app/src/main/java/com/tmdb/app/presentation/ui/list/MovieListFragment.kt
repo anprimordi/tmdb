@@ -6,27 +6,65 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.tmdb.app.R
+import com.tmdb.app.databinding.FragmentMovieListBinding
+import com.tmdb.app.domain.model.Movie
+import com.tmdb.app.domain.model.common.Error
+import com.tmdb.app.domain.model.common.Loading
+import com.tmdb.app.domain.model.common.Result
+import com.tmdb.app.domain.model.common.Success
+import com.tmdb.app.presentation.util.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
-class MovieListFragment : Fragment() {
+@AndroidEntryPoint
+class MovieListFragment : BaseFragment<FragmentMovieListBinding, MovieListContract.Presenter>(), MovieListContract.View {
 
-    companion object {
-        fun newInstance() = MovieListFragment()
+    override val layoutResourceId: Int = R.layout.fragment_movie_list
+    override val presenter: MovieListContract.Presenter by viewModels<MovieListViewModel>()
+
+    private val args : MovieListFragmentArgs by navArgs()
+
+    private val adapter = MovieListAdapter {
+        openMovieDetailPage(it.id)
     }
 
-    private lateinit var viewModel: MovieListViewModel
+    override fun onInitialize() {
+        binding.view = this
+        binding.presenter = presenter
+        binding.rvMovieList.adapter = adapter
+        binding.genreId = args.genreId
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_movie_list, container, false)
+        binding.title = args.genreName
+
+        presenter.loadData(args.genreId)
+        presenter.movieListObservable.observe(viewLifecycleOwner) {
+            fetchMovieList(it)
+        }
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(MovieListViewModel::class.java)
-        // TODO: Use the ViewModel
+    override fun fetchMovieList(result: Result<List<Movie>>) {
+        when(result) {
+            is Loading -> binding.swipeRefresh.isRefreshing = true
+            is Error -> binding.swipeRefresh.isRefreshing = false
+            is Success -> {
+
+                result.data.forEach {
+                    Timber.e(it.title)
+                }
+                binding.swipeRefresh.isRefreshing = false
+                adapter.submitList(result.data)
+            }
+        }
+    }
+
+    override fun openMovieDetailPage(movieId: Int) {
+        val direction = MovieListFragmentDirections.actionMovieListFragmentToMovieDetailFragment(movieId)
+        findNavController().navigate(direction)
     }
 
 }

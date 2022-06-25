@@ -4,5 +4,5 @@ import com.tmdb.app.domain.model.Genre
 import com.tmdb.app.domain.model.common.Result
 
 interface GenreDataSource {
-    suspend fun getGenreList() : Result<List<Genre>>
+    suspend fun getGenreList() : Result<List<Genre>?>
 }

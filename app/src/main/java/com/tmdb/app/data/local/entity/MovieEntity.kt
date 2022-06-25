@@ -9,6 +9,7 @@ import com.tmdb.app.domain.model.Movie
 data class MovieEntity(
     @PrimaryKey(autoGenerate = false) var id: Int,
     var title: String,
+    var posterUrl: String,
     var genres: List<Genre>,
     var overview: String,
     var popularity: Double,
@@ -21,6 +22,7 @@ data class MovieEntity(
             return MovieEntity(
                 id = model.id,
                 title = model.title,
+                posterUrl = model.posterUrl,
                 genres = model.genres,
                 overview = model.overview,
                 popularity = model.popularity,
@@ -35,6 +37,7 @@ data class MovieEntity(
         return Movie(
             id = id,
             title = title,
+            posterUrl = posterUrl,
             genres = genres,
             overview = overview,
             popularity = popularity,

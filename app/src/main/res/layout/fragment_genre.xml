@@ -1,21 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+        <variable
+            name="view"
+            type="com.tmdb.app.presentation.ui.genre.GenreContract.View" />
 
+        <variable
+            name="presenter"
+            type="com.tmdb.app.presentation.ui.genre.GenreContract.Presenter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".presentation.ui.genre.GenreFragment">
 
-        <TextView
-            android:gravity="center"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_toolbar"
+            style="@style/Widget.TheMovieDB.Toolbar.Main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello" />
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:padding="16dp"
+                    android:id="@+id/image_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@null"
+                    android:src="@drawable/ic_app_logo"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/gray_5"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_toolbar"
+            app:onRefreshListener="@{() -> presenter.loadData()}">
+
+           <LinearLayout
+               android:orientation="vertical"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <com.google.android.material.textview.MaterialTextView
+                   android:paddingHorizontal="16dp"
+                   android:text="@string/plain_genre_greet"
+                   android:textAppearance="?attr/textAppearanceHeadline6"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content" />
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/rv_genre"
+                   android:paddingHorizontal="16dp"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:paddingTop="4dp"
+                   android:clipToPadding="false"
+                   tools:listitem="@layout/item_list_genre"
+                   app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+           </LinearLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

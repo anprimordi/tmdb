@@ -7,9 +7,9 @@ import com.tmdb.app.domain.model.common.Result
 import javax.inject.Inject
 
 class GenreRepository @Inject constructor(
-    @RemoteDataSource remoteDataSource: GenreDataSource
+    @RemoteDataSource private val remoteDataSource: GenreDataSource
 ) : GenreDataSource{
-    override suspend fun getGenreList(): Result<List<Genre>> {
-        TODO("Not yet implemented")
+    override suspend fun getGenreList(): Result<List<Genre>?> {
+        return remoteDataSource.getGenreList()
     }
 }

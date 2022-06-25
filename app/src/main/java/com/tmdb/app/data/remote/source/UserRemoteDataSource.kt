@@ -16,11 +16,9 @@ class UserRemoteDataSource @Inject constructor(
     private val userServices: UserServices
 ) : UserDataSource {
     override suspend fun getRequestToken(): Result<User?> {
-//        return Success(User(token = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwZGE1NTZkMDg0ZDYwNmQ4YmE3ZDExNDBjN2M5YTY5YSIsInN1YiI6IjYyYjQxNTgzNTNmODMzMGQwNzIyMDcxYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.uK8IGFFcvva7bHKqWgd1xP5TwaOUGyzXx21DTYSl5Ic"))
         return withContext(Dispatchers.IO) {
             execute {
-                val apiKey = BuildConfig.API_KEY
-                userServices.getRequestToken(apiKey)
+                userServices.getRequestToken()
             } map {
                 if (it != null) it.toDomain()
                 else null

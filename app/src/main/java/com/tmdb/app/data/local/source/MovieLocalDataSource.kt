@@ -1,6 +1,5 @@
 package com.tmdb.app.data.local.source
 
-import androidx.room.Entity
 import com.tmdb.app.domain.datasource.MovieDataSource
 import com.tmdb.app.domain.model.Movie
 import com.tmdb.app.domain.model.Review
@@ -9,7 +8,7 @@ import com.tmdb.app.domain.model.common.Result
 import javax.inject.Inject
 
 class MovieLocalDataSource @Inject constructor() : MovieDataSource {
-    override suspend fun getMovieListByGenre(genreName: String): Result<List<Movie>> {
+    override suspend fun getMovieListByGenre(genreId: Int): Result<List<Movie>> {
         TODO("Not yet implemented")
     }
 

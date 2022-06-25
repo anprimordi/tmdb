@@ -30,14 +30,14 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-//    signingConfigs {
-//        create(Config.BuildType.RELEASE) {
-//            storeFile = rootProject.file(Config.KEYSTORE_PATH)
-//            storePassword = Config.KEYSTORE_PASSWORD
-//            keyAlias = Config.KEYSTORE_ALIAS
-//            keyPassword = Config.KEYSTORE_PASSWORD
-//        }
-//    }
+    signingConfigs {
+        create(Config.BuildType.RELEASE) {
+            storeFile = rootProject.file(Config.KEYSTORE_PATH)
+            storePassword = Config.KEYSTORE_PASSWORD
+            keyAlias = Config.KEYSTORE_ALIAS
+            keyPassword = Config.KEYSTORE_PASSWORD
+        }
+    }
 
     buildTypes {
         getByName(Config.BuildType.DEBUG) {
@@ -49,12 +49,13 @@ android {
             buildConfigField(TYPE_TEXT, AppProperty.DB_NAME, Field.Debug.DB_NAME)
             buildConfigField(TYPE_NUMBER, AppProperty.DB_VERSION, Field.Debug.DB_VERSION)
             buildConfigField(TYPE_TEXT, AppProperty.SERVER_URL, Field.Debug.SERVER_URL)
+            buildConfigField(TYPE_TEXT, AppProperty.IMAGE_URL, Field.Debug.IMAGE_URL)
             buildConfigField(TYPE_TEXT, AppProperty.API_KEY, Field.Debug.API_KEY)
         }
 
         getByName(Config.BuildType.RELEASE) {
             isMinifyEnabled = false
-//            signingConfig = signingConfigs.getByName(Config.BuildType.RELEASE)
+            signingConfig = signingConfigs.getByName(Config.BuildType.RELEASE)
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -65,6 +66,8 @@ android {
             buildConfigField(TYPE_TEXT, AppProperty.DB_NAME, Field.Release.DB_NAME)
             buildConfigField(TYPE_NUMBER, AppProperty.DB_VERSION, Field.Release.DB_VERSION)
             buildConfigField(TYPE_TEXT, AppProperty.SERVER_URL, Field.Release.SERVER_URL)
+            buildConfigField(TYPE_TEXT, AppProperty.IMAGE_URL, Field.Debug.IMAGE_URL)
+            buildConfigField(TYPE_TEXT, AppProperty.API_KEY, Field.Debug.API_KEY)
         }
     }
 

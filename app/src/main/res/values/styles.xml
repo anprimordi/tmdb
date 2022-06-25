@@ -7,6 +7,12 @@
         <item name="cardBackgroundColor">@color/white</item>
     </style>
 
+    <style name="Widget.TheMovieDB.Toolbar.Main" parent="">
+        <item name="cardElevation">0dp</item>
+        <item name="cardCornerRadius">0dp</item>
+        <item name="cardBackgroundColor">?attr/colorPrimary</item>
+    </style>
+
     <style name="Widget.TheMovieDB.Toolbar.Title" parent="">
         <item name="android:textAppearance">?attr/textAppearanceSubtitle1</item>
         <item name="android:paddingStart">8dp</item>
