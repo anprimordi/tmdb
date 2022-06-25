@@ -54,10 +54,9 @@ class ReviewFragment : BottomSheetDialogFragment(), ReviewContract.View {
 
     override fun fetchReviewList(result: Result<List<Review>>) {
         when (result) {
-            is Loading -> binding.swipeRefresh.isRefreshing = true
-            is Error -> binding.swipeRefresh.isRefreshing = false
+            is Loading -> {}
+            is Error -> showErrorMessage(result, binding.root)
             is Success -> {
-                binding.swipeRefresh.isRefreshing = false
                 adapter.submitList(result.data)
             }
         }
