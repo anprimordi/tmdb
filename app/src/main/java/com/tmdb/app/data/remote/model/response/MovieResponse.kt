@@ -3,7 +3,6 @@ package com.tmdb.app.data.remote.model.response
 import com.google.gson.annotations.SerializedName
 import com.tmdb.app.BuildConfig
 import com.tmdb.app.data.remote.util.RemoteDateTimeUtils
-import com.tmdb.app.domain.model.Genre
 import com.tmdb.app.domain.model.Movie
 import java.util.*
 
