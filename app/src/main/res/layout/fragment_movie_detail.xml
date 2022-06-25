@@ -6,20 +6,20 @@
     <data>
 
         <variable
-            name="title"
-            type="String" />
-
-        <variable
-            name="genreId"
+            name="movieId"
             type="Integer" />
 
         <variable
+            name="movie"
+            type="com.tmdb.app.domain.model.Movie" />
+
+        <variable
             name="view"
-            type="com.tmdb.app.presentation.ui.list.MovieListContract.View" />
+            type="com.tmdb.app.presentation.ui.detail.MovieDetailContract.View" />
 
         <variable
             name="presenter"
-            type="com.tmdb.app.presentation.ui.list.MovieListContract.Presenter" />
+            type="com.tmdb.app.presentation.ui.detail.MovieDetailContract.Presenter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,72 +27,200 @@
         android:layout_height="match_parent"
         tools:context=".presentation.ui.detail.MovieDetailFragment">
 
-<!--        <com.google.android.material.card.MaterialCardView-->
-<!--            android:id="@+id/card_toolbar"-->
-<!--            style="@style/Widget.TheMovieDB.Toolbar.Card"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
+        <ImageView
+            android:id="@+id/image_back"
+            style="@style/Widget.TheMovieDB.Toolbar.UpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:onClick="@{() -> view.closePage()}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content">-->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/image_back"
+            app:onRefreshListener="@{() -> presenter.loadData(movieId)}">
 
-<!--                <ImageView-->
-<!--                    android:id="@+id/image_back"-->
-<!--                    style="@style/Widget.TheMovieDB.Toolbar.UpButton"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:contentDescription="@null"-->
-<!--                    android:onClick="@{() -> view.closePage()}"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toTopOf="parent" />-->
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-<!--                <com.google.android.material.textview.MaterialTextView-->
-<!--                    style="@style/Widget.TheMovieDB.Toolbar.Title"-->
-<!--                    android:layout_width="0dp"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:text="@{title}"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintEnd_toEndOf="parent"-->
-<!--                    app:layout_constraintStart_toEndOf="@id/image_back"-->
-<!--                    app:layout_constraintTop_toTopOf="parent"-->
-<!--                    tools:text="Action" />-->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-<!--                <View-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="1dp"-->
-<!--                    android:background="@color/gray_5"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent" />-->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_thumbnail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="0dp"
+                        app:cardPreventCornerOverlap="false"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.TheMovieDB.Card.Rounded">
 
-<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
-<!--        </com.google.android.material.card.MaterialCardView>-->
+                        <ImageView
+                            android:id="@+id/image_poster"
+                            android:layout_width="160dp"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@null"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:src="@drawable/ic_placeholder_image_160" />
 
-<!--        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
-<!--            android:id="@+id/swipe_refresh"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="0dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/card_toolbar"-->
-<!--            app:onRefreshListener="@{() -> presenter.loadData(genreId)}">-->
+                    </com.google.android.material.card.MaterialCardView>
 
-<!--            <androidx.core.widget.NestedScrollView-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="match_parent">-->
 
-<!--                <androidx.recyclerview.widget.RecyclerView-->
-<!--                    android:id="@+id/list_article"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:clipToPadding="false"-->
-<!--                    android:paddingTop="4dp"-->
-<!--                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
-<!--                    app:spanCount="2"-->
-<!--                    tools:listitem="@layout/item_list_movie" />-->
-<!--            </androidx.core.widget.NestedScrollView>-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:ellipsize="end"
+                        android:maxLines="2"
+                        android:text="@{movie.title}"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/card_thumbnail"
+                        app:layout_constraintTop_toTopOf="@id/card_thumbnail"
+                        tools:text="@tools:sample/lorem/random" />
 
-<!--        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_genres"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:textAppearance="?attr/textAppearanceCaption1"
+                        app:layout_constraintStart_toStartOf="@id/text_title"
+                        app:layout_constraintTop_toBottomOf="@id/text_title"
+                        tools:text="Action, Drama, Thriller" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_release_date"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="8dp"
+                        android:textAppearance="?attr/textAppearanceCaption"
+                        app:layout_constraintStart_toStartOf="@id/text_genres"
+                        app:layout_constraintTop_toBottomOf="@id/text_genres"
+                        tools:text="8 Oktober 2019" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_vote_average_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/title_average_score"
+                        android:textAppearance="?attr/textAppearanceCaption"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="@id/text_vote_average"
+                        app:layout_constraintStart_toEndOf="@id/text_vote_average"
+                        app:layout_constraintTop_toTopOf="@id/text_vote_average" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_vote_average"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:textAppearance="?attr/textAppearanceHeadline4"
+                        android:textColor="?attr/colorSecondary"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@id/text_release_date"
+                        app:layout_constraintTop_toBottomOf="@id/text_release_date"
+                        tools:text="7.6" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:onClick="@{() -> view.openTrailerPage()}"
+                        android:text="@string/action_watch_trailer"
+                        app:layout_constraintStart_toStartOf="@id/text_vote_average"
+                        app:layout_constraintTop_toBottomOf="@id/text_vote_average" />
+
+                    <View
+                        android:id="@+id/line1"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="16dp"
+                        android:background="@color/gray_5"
+                        app:layout_constraintTop_toBottomOf="@id/card_thumbnail" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_overview_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@string/title_overview"
+                        android:textAppearance="?attr/textAppearanceHeadline6"
+                        app:layout_constraintTop_toBottomOf="@id/line1" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_overview"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:text="@{movie.overview}"
+                        android:textAppearance="?attr/textAppearanceBody1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/text_overview_title"
+                        tools:maxLines="6"
+                        tools:text="@tools:sample/lorem/random" />
+
+                    <View
+                        android:id="@+id/line2"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="24dp"
+                        android:background="@color/gray_5"
+                        app:layout_constraintTop_toBottomOf="@id/text_overview" />
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/text_review"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:drawableTop="@drawable/ic_review_24"
+                        android:drawableTint="?attr/colorSecondary"
+                        android:gravity="center_horizontal"
+                        android:onClick="@{() -> view.openReviewPage(movieId)}"
+                        android:text="@string/plain_reviews"
+                        android:textAppearance="?attr/textAppearanceCaption"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/text_vote_average" />
+
+
+                    <!--           <androidx.core.widget.NestedScrollView
+                                   android:layout_width="match_parent"
+                                   android:layout_height="wrap_content"
+                                   app:layout_constraintTop_toBottomOf="@id/text_overview">
+
+                                   <androidx.recyclerview.widget.RecyclerView
+                                       android:id="@+id/rv_review"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent"
+                                       android:clipToPadding="false"
+                                       android:paddingTop="4dp"
+                                       app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                                       app:spanCount="2"
+                                       tools:listitem="@layout/item_list_movie" />
+
+                               </androidx.core.widget.NestedScrollView>-->
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

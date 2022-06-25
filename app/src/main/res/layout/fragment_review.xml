@@ -4,24 +4,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <variable
+            name="movieId"
+            type="Integer" />
+
         <variable
             name="view"
-            type="com.tmdb.app.presentation.ui.genre.GenreContract.View" />
+            type="com.tmdb.app.presentation.ui.detail.review.ReviewContract.View" />
 
         <variable
             name="presenter"
-            type="com.tmdb.app.presentation.ui.genre.GenreContract.Presenter" />
+            type="com.tmdb.app.presentation.ui.detail.MovieDetailContract.Presenter" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".presentation.ui.genre.GenreFragment">
+        tools:context=".presentation.ui.detail.review.ReviewFragment">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_toolbar"
-            style="@style/Widget.TheMovieDB.Toolbar.Main"
+            style="@style/Widget.TheMovieDB.Toolbar.Card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent">
@@ -31,14 +36,24 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:padding="16dp"
                     android:id="@+id/image_back"
+                    style="@style/Widget.TheMovieDB.Toolbar.UpButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@null"
-                    android:src="@drawable/ic_app_logo"
+                    android:onClick="@{() -> view.closePage()}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    style="@style/Widget.TheMovieDB.Toolbar.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/plain_reviews"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/image_back"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <View
@@ -56,32 +71,22 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card_toolbar"
-            app:onRefreshListener="@{() -> presenter.loadData()}">
+            app:onRefreshListener="@{() -> presenter.loadReview(movieId)}">
 
-           <LinearLayout
-               android:orientation="vertical"
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content">
+            <androidx.core.widget.NestedScrollView
+                android:paddingTop="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-               <com.google.android.material.textview.MaterialTextView
-                   android:paddingTop="16dp"
-                   android:paddingHorizontal="16dp"
-                   android:text="@string/plain_genre_greet"
-                   android:textAppearance="?attr/textAppearanceHeadline6"
-                   android:layout_width="match_parent"
-                   android:layout_height="wrap_content" />
-
-               <androidx.recyclerview.widget.RecyclerView
-                   android:id="@+id/rv_genre"
-                   android:paddingHorizontal="16dp"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:paddingTop="4dp"
-                   android:clipToPadding="false"
-                   tools:listitem="@layout/item_list_genre"
-                   app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-           </LinearLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_movie_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:paddingTop="4dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_list_review" />
+            </androidx.core.widget.NestedScrollView>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

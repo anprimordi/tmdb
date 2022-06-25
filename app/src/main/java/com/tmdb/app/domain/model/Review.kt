@@ -4,16 +4,14 @@ import com.tmdb.app.domain.model.common.Model
 
 data class Review(
     val author: Author,
-    val content: String
+    val content: String,
+    val timestamp: Long
 ) : Model {
     companion object {
         val DEFAULT = Review(
-            author = Author(
-                name = "",
-                username = "",
-                avatarPath = null,
-                rating = null
-            ), content = ""
+            author = Author.DEFAULT,
+            content = "",
+            timestamp = 0
         )
     }
 }

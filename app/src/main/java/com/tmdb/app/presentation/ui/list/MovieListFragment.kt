@@ -52,10 +52,6 @@ class MovieListFragment : BaseFragment<FragmentMovieListBinding, MovieListContra
             is Loading -> binding.swipeRefresh.isRefreshing = true
             is Error -> binding.swipeRefresh.isRefreshing = false
             is Success -> {
-
-                result.data.forEach {
-                    Timber.e(it.title)
-                }
                 binding.swipeRefresh.isRefreshing = false
                 adapter.submitList(result.data)
             }

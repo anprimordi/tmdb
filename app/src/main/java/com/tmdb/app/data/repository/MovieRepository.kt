@@ -18,14 +18,14 @@ class MovieRepository @Inject constructor(
     }
 
     override suspend fun getMovieDetail(movieId: Int): Result<Movie> {
-        TODO("Not yet implemented")
+        return remoteMovieDataSource.getMovieDetail(movieId)
     }
 
     override suspend fun getMovieTrailer(movieId: Int): Result<Trailer> {
-        TODO("Not yet implemented")
+        return remoteMovieDataSource.getMovieTrailer(movieId)
     }
 
     override suspend fun getReviewList(movieId: Int): Result<List<Review>> {
-        TODO("Not yet implemented")
+        return remoteMovieDataSource.getReviewList(movieId)
     }
 }

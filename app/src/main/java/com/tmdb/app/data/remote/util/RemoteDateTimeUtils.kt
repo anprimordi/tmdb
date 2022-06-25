@@ -7,6 +7,7 @@ object RemoteDateTimeUtils {
 
     private const val SERVER_DATE_PATTERN: String = "yyyy-MM-dd"
     private const val SERVER_DATE_TIME_PATTERN: String = "yyyy-MM-dd HH:mm:ss"
+    private const val SERVER_DATE_TIME_REVIEW_PATTERN: String = "yyyy-MM-dd'T'HH:mm:ss.S'Z'"
 
     //region Formatter
     fun formatServerDate(date: Date): String {
@@ -42,6 +43,17 @@ object RemoteDateTimeUtils {
         return try {
             dateString ?: throw Exception()
             val formatter = SimpleDateFormat(SERVER_DATE_TIME_PATTERN, Locale.getDefault())
+            formatter.parse(dateString)?.time
+        } catch (ex: Exception) {
+            ex.printStackTrace()
+            null
+        }
+    }
+
+    fun parseServerDateTimeReview(dateString: String?): Long? {
+        return try {
+            dateString ?: throw Exception()
+            val formatter = SimpleDateFormat(SERVER_DATE_TIME_REVIEW_PATTERN, Locale.getDefault())
             formatter.parse(dateString)?.time
         } catch (ex: Exception) {
             ex.printStackTrace()
