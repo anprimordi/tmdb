@@ -20,6 +20,7 @@
         <entry key="..\:/Users/Primordi/AndroidStudioProjects/tmdb/app/src/main/res/layout/item_list_genre.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/Primordi/AndroidStudioProjects/tmdb/app/src/main/res/layout/item_list_movie.xml" value="0.25" />
         <entry key="..\:/Users/Primordi/AndroidStudioProjects/tmdb/app/src/main/res/layout/item_list_review.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_genre.xml" value="0.1" />
       </map>
     </option>
   </component>

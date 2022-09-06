@@ -32,7 +32,7 @@ android {
 
     signingConfigs {
         create(Config.BuildType.RELEASE) {
-            storeFile = rootProject.file(Config.KEYSTORE_PATH)
+            storeFile = file("${rootProject.rootDir}${Config.KEYSTORE_PATH}")
             storePassword = Config.KEYSTORE_PASSWORD
             keyAlias = Config.KEYSTORE_ALIAS
             keyPassword = Config.KEYSTORE_PASSWORD
